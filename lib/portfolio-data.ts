@@ -5,6 +5,17 @@ import innov_academy from "../public/impages/projects/innov_academy.png";
 import falcon_feeds from "../public/impages/projects/falconfeeds.png";
 import nethradhama from "../public/impages/projects/Nethradhama_book_an_apt.png";
 
+import css from "@/public/impages/skills/CSS.png";
+import express from "@/public/impages/skills/express-js.png";
+import javascript from "@/public/impages/skills/javascript.png";
+import mongo_db from "@/public/impages/skills/mongo_db.png";
+import nextjs from "@/public/impages/skills/nextjs.png";
+import nodejs from "@/public/impages/skills/nodejs.png";
+import react from "@/public/impages/skills/react.png";
+import tailwindcss from "@/public/impages/skills/tailwindcss.png";
+import typescript from "@/public/impages/skills/typescript.png";
+// import typescript from "@/public/impages/skills/typescript.png"
+
 export const profileData = {
   name: "Sunil Patra",
   title: "Full-Stack Developer",
@@ -57,28 +68,28 @@ export const aboutData = {
       name: "Innovkraft Academy",
       text: "John was hired to create a corporate identity. We were very pleased with the work done. He has a lot of experience and is very concerned about the needs of client.",
       url: "https://www.innovkraftacademy.com/",
-      img:innov_academy
+      img: innov_academy,
     },
     {
       // avatar: "/professional-woman-diverse.png",
       name: "Zen Furniture",
       text: "John was hired to create a corporate identity. We were very pleased with the work done. He has a lot of experience and is very concerned about the needs of client.",
       url: "https://www.zenfurniture.in",
-      img: zen_front
+      img: zen_front,
     },
     {
       // avatar: "/professional-man.jpg",
       name: "Aris Investing",
       text: "Outstanding work! John delivered a high-quality product that exceeded our expectations. His attention to detail is remarkable.",
       url: "https://arisinvesting.com",
-      img: aris_investing
+      img: aris_investing,
     },
     {
       // avatar: "/professional-woman-diverse.png",
       name: "Dashbord Zen",
       text: "Professional, creative, and highly skilled. John is the developer you want on your team for any complex project.",
       url: "https://admin.zenfurniture.in/",
-      img: admin_zen
+      img: admin_zen,
     },
     {
       // avatar: "/professional-woman-diverse.png",
@@ -96,18 +107,15 @@ export const aboutData = {
     },
   ],
   clients: [
-    { name: "React.js", logo: "/tech-company-logo.jpg" },
-    { name: "Next.js", logo: "/startup-logo.png" },
-    { name: "JavaScript", logo: "/design-agency-logo.png" },
-    { name: "TypeScript", logo: "/software-company-logo.png" },
-    { name: "HTML/HTML5", logo: "/web-agency-logo.jpg" },
-    { name: "CSS/CSS3", logo: "/app-development-logo.jpg" },
-    { name: "TailwindCSS", logo: "/tech-company-logo.jpg" },
-    { name: "BootStarp", logo: "/startup-logo.png" },
-    { name: "JavaScript", logo: "/design-agency-logo.png" },
-    { name: "TypeScript", logo: "/software-company-logo.png" },
-    { name: "Git", logo: "/web-agency-logo.jpg" },
-    { name: "GitHub", logo: "/app-development-logo.jpg" },
+    { name: "React.js", logo: react },
+    { name: "Next.js", logo: nextjs },
+    { name: "CSS/CSS3", logo: css },
+    { name: "TailwindCSS", logo: tailwindcss },
+    { name: "Nodejs", logo: nodejs },
+    { name: "JavaScript", logo: javascript },
+    { name: "TypeScript", logo: typescript },
+    { name: "Express", logo: express },
+    { name: "MongoDB", logo: mongo_db },
   ],
 };
 

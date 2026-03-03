@@ -83,7 +83,7 @@ export function AboutSection({ data = aboutData }: AboutSectionProps) {
             {[...data.clients, ...data.clients].map((client, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-32 h-20 md:w-40 md:h-24 bg-secondary rounded-xl md:rounded-2xl border border-border flex items-center justify-center p-4 md:p-6 hover:border-accent transition-colors"
+                className="flex-shrink-0 w-32 h-20 md:w-40 md:h-24 bg-neutral-700 rounded-xl md:rounded-2xl border border-border flex items-center justify-center p-4 md:p-6 hover:border-accent transition-colors"
               >
                 <Image
                   src={client.logo || "/placeholder.svg"}
