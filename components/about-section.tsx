@@ -1,16 +1,17 @@
-import { PenTool, Code, Smartphone, Zap } from 'lucide-react'
-import Image from 'next/image'
-import { aboutData } from '@/lib/portfolio-data'
+import { PenTool, Code, Smartphone, Zap } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { aboutData } from "@/lib/portfolio-data";
 
 const iconMap = {
   Code,
   Zap,
   Smartphone,
   PenTool,
-}
+};
 
 interface AboutSectionProps {
-  data?: typeof aboutData
+  data?: typeof aboutData;
 }
 
 export function AboutSection({ data = aboutData }: AboutSectionProps) {
@@ -18,7 +19,9 @@ export function AboutSection({ data = aboutData }: AboutSectionProps) {
     <div className="space-y-8 md:space-y-10">
       {/* About Me */}
       <div>
-        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">About Me</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+          About Me
+        </h2>
         <div className="w-10 h-1 bg-accent rounded-full mb-6" />
         <div className="space-y-4 text-sm md:text-base text-muted-foreground leading-relaxed">
           {data.description.map((paragraph, index) => (
@@ -29,55 +32,79 @@ export function AboutSection({ data = aboutData }: AboutSectionProps) {
 
       {/* What I'm Doing */}
       <div>
-        <h3 className="text-xl md:text-2xl font-bold text-foreground mb-6">What I'm Doing</h3>
+        <h3 className="text-xl md:text-2xl font-bold text-foreground mb-6">
+          What I'm Doing
+        </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
           {data.services.map((service, index) => {
-            const IconComponent = iconMap[service.icon as keyof typeof iconMap]
+            const IconComponent = iconMap[service.icon as keyof typeof iconMap];
             return (
               <div
                 key={index}
                 className="flex gap-3 md:gap-4 p-4 md:p-6 bg-secondary rounded-xl md:rounded-2xl border border-border hover:border-accent transition-colors"
               >
                 <div className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0">
-                  <IconComponent className="w-full h-full text-accent" strokeWidth={1.5} />
+                  <IconComponent
+                    className="w-full h-full text-accent"
+                    strokeWidth={1.5}
+                  />
                 </div>
                 <div>
-                  <h4 className="text-base md:text-lg font-semibold text-foreground mb-2">{service.title}</h4>
-                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{service.description}</p>
+                  <h4 className="text-base md:text-lg font-semibold text-foreground mb-2">
+                    {service.title}
+                  </h4>
+                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+                    {service.description}
+                  </p>
                 </div>
               </div>
-            )
+            );
           })}
         </div>
       </div>
 
       {/* Projects with Marquee Animation */}
       <div>
-        <h3 className="text-xl md:text-2xl font-bold text-foreground mb-6">Projects</h3>
+        <h3 className="text-xl md:text-2xl font-bold text-foreground mb-6">
+          Projects
+        </h3>
         <div className="relative overflow-hidden">
           <div className="flex gap-3 md:gap-4 animate-marquee">
-            {[...data.testimonials, ...data.testimonials].map((testimonial, index) => (
-              <div  key={index} className="flex-shrink-0 w-72 md:w-80 p-4 md:p-6 bg-secondary rounded-xl md:rounded-2xl border border-border">
-                <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
-                  <Image
-                    src={testimonial.img || "/placeholder.svg"}
-                    alt={testimonial.name}
-                    width={300}
-                    height={200}
-                    className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl object-cover"
-                  />
-                  <h4 className="text-base md:text-lg font-semibold text-foreground">{testimonial.name}</h4>
-                </div>
-                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{testimonial.text}</p>
-              </div>
-            ))}
+            {[...data.testimonials, ...data.testimonials].map(
+              (testimonial, index) => (
+                <Link
+                  href={testimonial.url}
+                  target="_blank"
+                  key={index}
+                  className="flex-shrink-0 w-72 md:w-80 p-4 md:p-6 bg-secondary rounded-xl md:rounded-2xl border border-border"
+                >
+                  <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
+                    <Image
+                      src={testimonial.img || "/placeholder.svg"}
+                      alt={testimonial.name}
+                      width={300}
+                      height={200}
+                      className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl object-cover"
+                    />
+                    <h4 className="text-base md:text-lg font-semibold text-foreground">
+                      {testimonial.name}
+                    </h4>
+                  </div>
+                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+                    {testimonial.text}
+                  </p>
+                </Link>
+              ),
+            )}
           </div>
         </div>
       </div>
 
       {/* Clients with Marquee Animation */}
       <div>
-        <h3 className="text-xl md:text-2xl font-bold text-foreground mb-6">Skills</h3>
+        <h3 className="text-xl md:text-2xl font-bold text-foreground mb-6">
+          Skills
+        </h3>
         <div className="relative overflow-hidden py-4">
           <div className="flex gap-4 md:gap-6 animate-marquee-slow">
             {[...data.clients, ...data.clients].map((client, index) => (
@@ -85,18 +112,15 @@ export function AboutSection({ data = aboutData }: AboutSectionProps) {
                 key={index}
                 className="flex-shrink-0 w-32 h-20 md:w-40 md:h-24 bg-neutral-700 rounded-xl md:rounded-2xl border border-border flex items-center justify-center p-4 md:p-6 hover:border-accent transition-colors"
               >
-                <Image
-                  src={client.logo || "/placeholder.svg"}
-                  alt={client.name}
-                  width={300}
-                  height={200}
-                  className="w-full h-full object-contain opacity-70 hover:opacity-100 transition-opacity"
-                />
+                <div className="flex flex-col justify-center items-center">
+                  {client.logo}
+                  <p className="text-sm">{client.name}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

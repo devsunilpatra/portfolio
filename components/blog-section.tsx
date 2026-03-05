@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Calendar, Clock, ArrowRight } from 'lucide-react'
 import { blogData } from '@/lib/portfolio-data'
 
@@ -20,9 +21,11 @@ export function BlogSection({ data = blogData }: BlogSectionProps) {
             className="group bg-secondary rounded-xl md:rounded-2xl border border-border overflow-hidden hover:border-accent hover:shadow-lg hover:shadow-accent/10 transition-all duration-300"
           >
             <div className="aspect-video overflow-hidden bg-background">
-              <img
+              <Image
                 src={post.image || "/placeholder.svg"}
                 alt={post.title}
+                width={300}
+                height={200}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
@@ -59,7 +62,8 @@ export function BlogSection({ data = blogData }: BlogSectionProps) {
 
               {/* Read More Link */}
               <a
-                href={`/blog/${post.slug}`}
+              href={`/`}
+                // href={`/blog/${post.slug}`}
                 className="flex items-center gap-2 text-xs md:text-sm text-accent hover:gap-3 transition-all font-medium"
               >
                 Read More

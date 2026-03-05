@@ -1,5 +1,8 @@
 import { Mail, Phone, Calendar, MapPin } from 'lucide-react'
 import { Github, Twitter, Linkedin } from 'lucide-react'
+import { RiTwitterXFill } from "react-icons/ri";
+import { SlSocialLinkedin } from "react-icons/sl";
+import { FiLinkedin } from "react-icons/fi";
 import { profileData } from '@/lib/portfolio-data'
 
 interface ProfileSidebarProps {
@@ -102,7 +105,7 @@ export function ProfileSidebar({ data = profileData }: ProfileSidebarProps) {
           className="w-10 h-10 rounded-lg bg-secondary hover:bg-accent hover:text-accent-foreground transition-colors flex items-center justify-center"
           aria-label="Twitter"
         >
-          <Twitter className="w-5 h-5" />
+          <RiTwitterXFill className="w-5 h-5" />
         </a>
         <a
           href={data.social.instagram}
@@ -111,7 +114,7 @@ export function ProfileSidebar({ data = profileData }: ProfileSidebarProps) {
           className="w-10 h-10 rounded-lg bg-secondary hover:bg-accent hover:text-accent-foreground transition-colors flex items-center justify-center"
           aria-label="Instagram"
         >
-          <Linkedin className="w-5 h-5" />
+          <FiLinkedin className="w-5 h-5" />
         </a>
       </div>
     </aside>

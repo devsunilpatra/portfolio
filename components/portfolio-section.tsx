@@ -1,24 +1,30 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Image from 'next/image'
-import { ExternalLink, Eye } from 'lucide-react'
-import { portfolioData } from '@/lib/portfolio-data'
+import { useState } from "react";
+import Image from "next/image";
+import { ExternalLink, Eye } from "lucide-react";
+import { portfolioData } from "@/lib/portfolio-data";
 
 interface PortfolioSectionProps {
-  data?: typeof portfolioData
+  data?: typeof portfolioData;
 }
 
-export function PortfolioSection({ data = portfolioData }: PortfolioSectionProps) {
-  const [activeFilter, setActiveFilter] = useState('all')
+export function PortfolioSection({
+  data = portfolioData,
+}: PortfolioSectionProps) {
+  const [activeFilter, setActiveFilter] = useState("all");
 
   const filteredProjects =
-    activeFilter === 'all' ? data.projects : data.projects.filter((p) => p.category === activeFilter)
+    activeFilter === "all"
+      ? data.projects
+      : data.projects.filter((p) => p.category === activeFilter);
 
   return (
     <div className="space-y-6 md:space-y-8">
       <div>
-        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Portfolio</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+          Portfolio
+        </h2>
         <div className="w-10 h-1 bg-accent rounded-full mb-6" />
       </div>
 
@@ -30,8 +36,8 @@ export function PortfolioSection({ data = portfolioData }: PortfolioSectionProps
             onClick={() => setActiveFilter(category)}
             className={`px-4 md:px-5 py-2 md:py-2.5 rounded-xl text-xs md:text-sm font-medium capitalize transition-all ${
               activeFilter === category
-                ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/20'
-                : 'bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80'
+                ? "bg-accent text-accent-foreground shadow-lg shadow-accent/20"
+                : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80"
             }`}
           >
             {category}
@@ -54,7 +60,7 @@ export function PortfolioSection({ data = portfolioData }: PortfolioSectionProps
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
             </div>
-            
+
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/20 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-4 md:p-6">
               <h3 className="text-lg md:text-xl font-bold text-foreground mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                 {project.title}
@@ -71,15 +77,30 @@ export function PortfolioSection({ data = portfolioData }: PortfolioSectionProps
                   <Eye className="w-3.5 h-3.5 md:w-4 md:h-4" />
                   Preview
                 </a>
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-secondary border border-border text-foreground rounded-lg text-xs md:text-sm font-medium hover:bg-accent hover:text-accent-foreground hover:border-accent transition-colors"
-                >
-                  <ExternalLink className="w-3.5 h-3.5 md:w-4 md:h-4" />
-                  Visit
-                </a>
+
+                {project.githubUrl === "" ? (
+                  <div
+                    onClick={() =>
+                      alert(
+                        "GitHub url is private as it belongs to a private organistaion",
+                      )
+                    }
+                    className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-secondary border border-border text-foreground rounded-lg text-xs md:text-sm font-medium cursor-pointer hover:bg-accent hover:text-accent-foreground hover:border-accent transition-colors"
+                  >
+                       <ExternalLink className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                    Visit
+                  </div>
+                ) : (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-secondary border border-border text-foreground rounded-lg text-xs md:text-sm font-medium hover:bg-accent hover:text-accent-foreground hover:border-accent transition-colors"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                    Visit
+                  </a>
+                )}
               </div>
             </div>
 
@@ -91,5 +112,5 @@ export function PortfolioSection({ data = portfolioData }: PortfolioSectionProps
         ))}
       </div>
     </div>
-  )
+  );
 }

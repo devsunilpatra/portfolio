@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { contactData } from "@/lib/portfolio-data";
-
+import emailjs from "@emailjs/browser";
 interface ContactSectionProps {
   data?: typeof contactData;
 }
@@ -17,28 +17,32 @@ export function ContactSection({ data = contactData }: ContactSectionProps) {
     message: "",
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    setLoading(true);
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setLoading(true);
 
-      if (res.ok) {
-        setLoading(false);
-        alert("Message sent succesfully")
-        setFormData({ name: "", email: "", message: "" });
-      }
-    } catch (error) {
-      console.log("error", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    await emailjs.send(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+      {
+        user_name: formData.name,
+        user_email: formData.email,
+        message: formData.message,
+      },
+      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+    );
+
+    alert("Message sent successfully ✅");
+
+    setFormData({ name: "", email: "", message: "" });
+  } catch (error) {
+    console.log("error", error);
+    alert("Failed to send message ❌");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="space-y-6 md:space-y-8">
